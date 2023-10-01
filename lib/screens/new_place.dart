@@ -1,4 +1,5 @@
 import 'package:favorite_places/provider/places_provider.dart';
+import 'package:favorite_places/widget/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,6 +40,9 @@ class _NewPlaceState extends ConsumerState<NewPlace> {
                   label: Text('Title'),
                 ),
               ),
+              const SizedBox(height: 12),
+              //image input
+              const ImageInput(),
               const SizedBox(height: 12),
               ElevatedButton.icon(
                 onPressed: () {
