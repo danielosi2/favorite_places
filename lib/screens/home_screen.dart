@@ -24,23 +24,32 @@ class HomeScreen extends ConsumerWidget {
         ],
         title: const Text('Favorite Places'),
       ),
-      body: ListView.builder(
-        itemCount: places.length,
-        itemBuilder: (context, index) => GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PlacesDetails(places[index].title),
-              ),
-            );
-          },
-          child: ListTile(
-            title: Text(
-              places[index].title,
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground,
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: ListView.builder(
+          itemCount: places.length,
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlacesDetails(
+                    place: places[index],
                   ),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 26,
+                backgroundImage: FileImage(places[index].image),
+              ),
+              title: Text(
+                places[index].title,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
             ),
           ),
         ),
