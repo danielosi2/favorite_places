@@ -50,6 +50,12 @@ class HomeScreen extends ConsumerWidget {
                       color: Theme.of(context).colorScheme.onBackground,
                     ),
               ),
+              subtitle: Text(
+                places[index].location.address,
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+              ),
             ),
           ),
         ),
