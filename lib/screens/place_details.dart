@@ -1,4 +1,5 @@
 import 'package:favorite_places/models/places.dart';
+import 'package:favorite_places/screens/map.dart';
 import 'package:flutter/material.dart';
 
 class PlacesDetails extends StatelessWidget {
@@ -6,11 +7,11 @@ class PlacesDetails extends StatelessWidget {
 
   final Places place;
 
-  String get LocationImage {
+  String get locationImage {
     final lat = place.location.latitude;
     final lng = place.location.longitute;
 
-    return "https://maps.googleapis.com/maps/api/staticmap?center = $lat, $lng = &zoom=13&size=600x300&maptype=roadmap &markers=color:red%7Clabel:S%7C40. $lat,$lng &key=AIzaSyBYoRZuoQOTJV5kNN2uUBUzjd_pL0o2qBM";
+    return "https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C$lat,$lng&key=AIzaSyBYoRZuoQOTJV5kNN2uUBUzjd_pL0o2qBM";
   }
 
   @override
@@ -33,9 +34,19 @@ class PlacesDetails extends StatelessWidget {
                 right: 0,
                 child: Column(
                   children: [
-                    CircleAvatar(
-                      radius: 70,
-                      backgroundImage: NetworkImage(LocationImage),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MapScreen(
+                            location: place.location,
+                            isSelecting: false,
+                          ),
+                        ));
+                      },
+                      child: CircleAvatar(
+                        radius: 70,
+                        backgroundImage: NetworkImage(locationImage),
+                      ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
